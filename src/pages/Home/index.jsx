@@ -107,7 +107,8 @@ const Page = () => {
           {({ setIsOpened }) => (
             <Form
               onSuccess={() => setIsOpened(true)}
-              onError={() => null}
+              onError={() => alert("Une erreur est survenue")}
+              resetForm={true}
             />
           )}
         </Modal>
