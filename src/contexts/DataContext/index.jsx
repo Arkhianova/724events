@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import {
   createContext,
-  useCallback,
   useContext,
   useEffect,
   useState,
+  useMemo
 } from "react";
 
 const DataContext = createContext({});
@@ -20,17 +20,30 @@ export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-  const getData = useCallback(async () => {
+  
+
+ useEffect(() => {
+  const fetchData = async () => {
     try {
-      setData(await api.loadData());
+      const result = await api.loadData();
+      setData(result);
     } catch (err) {
       setError(err);
     }
-  }, []);
+  };
 
- useEffect(() => {
-  if (!data) getData();
+  fetchData();
+}, []);
+
+  
+const last = useMemo(() => {
+  if (!data?.events?.length) return null;
+
+  return data.events.reduce((latest, current) =>
+    new Date(current.date) > new Date(latest.date) ? current : latest
+  );
 }, [data]);
+
   
   return (
     <DataContext.Provider
@@ -38,6 +51,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
+        last
       }}
     >
       {children}
