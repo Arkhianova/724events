@@ -57,6 +57,7 @@ const EventList = () => {
                   />
                 )}
               </Modal>
+              
             ))}
           </div>
           <div className="Pagination">

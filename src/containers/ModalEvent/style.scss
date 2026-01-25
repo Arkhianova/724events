@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+@use "../../colors.scss" as *;
 
 .ModalEvent {
   font-family: "Manrope", sans-serif;
