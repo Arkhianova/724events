@@ -16,7 +16,6 @@ const Slider = () => {
   //   );
   // };
 
-
   useEffect(() => {
     if (!byDateDesc || byDateDesc.length === 0) return;
   const interval = setInterval(() => {

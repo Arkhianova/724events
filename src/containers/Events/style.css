@@ -1,3 +1,20 @@
 .SelectTitle {
   color: white;
 }
+.Pagination a {
+  display: inline-block; /* permet de transformer / scale */
+  text-decoration: none;
+  color: white;
+  padding: 0 0.5rem;
+  transition: transform 0.2s ease; /* animation smooth */
+}
+.Pagination > a:first-child {
+  margin-right: 1rem;
+}
+.Pagination a:hover {
+  transform: scale(1.5);
+}
+.Pagination a.active {
+  transform: scale(1.5);
+  font-weight: bolder;
+}
