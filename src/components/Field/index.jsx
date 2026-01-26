@@ -5,16 +5,18 @@ import "./style.scss";
 export const FIELD_TYPES = {
   INPUT_TEXT: 1,
   TEXTAREA: 2,
+  EMAIL: 3,
 };
 
-const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder }) => {
+const Field = ({ type, label, placeholder }) => {
   let component;
   switch (type) {
     case FIELD_TYPES.INPUT_TEXT:
       component = (
         <input
+          id={label}
           type="text"
-          name={name}
+          name={label}
           placeholder={placeholder}
           data-testid="field-testid"
           required
@@ -22,13 +24,27 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder }) => {
       );
       break;
     case FIELD_TYPES.TEXTAREA:
-      component = <textarea name={name} data-testid="field-testid" required />;
+      component = <textarea name={label} id={label} data-testid="field-testid" required />;
+      break;
+    case FIELD_TYPES.EMAIL:
+      component = (
+        <input
+          id={label}
+          type="email"
+          name={label}
+          placeholder={placeholder}
+          data-testid="field-testid"
+          autoComplete="on"
+          required
+        />
+      );
       break;
     default:
       component = (
         <input
+          id={label}
           type="text"
-          name={name}
+          name={label}
           placeholder={placeholder}
           data-testid="field-testid"
           required
@@ -37,7 +53,7 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder }) => {
   }
   return (
     <div className="inputField">
-      <span>{label}</span>
+      <label htmlFor={label}>{label}</label>
       {component}
     </div>
   );
