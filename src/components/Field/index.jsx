@@ -8,12 +8,13 @@ export const FIELD_TYPES = {
   EMAIL: 3,
 };
 
-const Field = ({ type, label, placeholder }) => {
+const Field = ({ type, label, placeholder, onChange }) => {
   let component;
   switch (type) {
     case FIELD_TYPES.INPUT_TEXT:
       component = (
         <input
+          onChange={onChange}
           id={label}
           type="text"
           name={label}
@@ -29,6 +30,7 @@ const Field = ({ type, label, placeholder }) => {
     case FIELD_TYPES.EMAIL:
       component = (
         <input
+          onChange={onChange}
           id={label}
           type="email"
           name={label}
@@ -42,6 +44,7 @@ const Field = ({ type, label, placeholder }) => {
     default:
       component = (
         <input
+          onChange={onChange}
           id={label}
           type="text"
           name={label}

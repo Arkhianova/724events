@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+
 import Menu from "./index";
 
 describe("When Menu is created", () => {

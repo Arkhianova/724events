@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+
 import PeopleCard from "./index";
 
 describe("When a people card is created", () => {

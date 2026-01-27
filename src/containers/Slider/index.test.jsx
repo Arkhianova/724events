@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { describe, it, vi } from "vitest";
+
 import Slider from "./index";
 import { api, DataProvider } from "../../contexts/DataContext";
 
@@ -28,8 +30,8 @@ const data = {
 
 describe("When slider is created", () => {
   it("a list card is displayed", async () => {
-    window.console.error = jest.fn();
-    api.loadData = jest.fn().mockReturnValue(data);
+    window.console.error = vi.fn();
+    api.loadData = vi.fn().mockReturnValue(data);
     render(
       <DataProvider>
         <Slider />

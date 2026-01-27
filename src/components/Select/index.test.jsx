@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+
 import Select from "./index";
 
 describe("When a select is created", () => {
@@ -43,7 +45,7 @@ describe("When a select is created", () => {
     });
     describe("and a click is triggered on a choice item", () => {
       it("a onChange callback is called", () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         render(<Select selection={["value1", "value2"]} onChange={onChange} />);
         const collapseButtonElement = screen.getByTestId(
           "collapse-button-testid"

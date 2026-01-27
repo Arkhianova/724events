@@ -1,5 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+
 import Button, { BUTTON_TYPES } from "./index";
+
 
 describe("When a button is created", () => {
   it("the button must include a title", () => {
@@ -14,7 +17,7 @@ describe("When a button is created", () => {
   });
   describe("and it's clicked", () => {
     it("an event onClick it executed", () => {
-      const onClick = jest.fn();
+      const onClick = vi.fn();
       render(<Button onClick={onClick} />);
       const buttonElement = screen.getByTestId("button-test-id");
       fireEvent(

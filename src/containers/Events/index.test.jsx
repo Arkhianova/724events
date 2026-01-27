@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+
 import { api, DataProvider } from "../../contexts/DataContext";
 import Events from "./index";
 
@@ -39,17 +41,17 @@ const data = {
 
 describe("When Events is created", () => {
   it("a list of event card is displayed", async () => {
-    api.loadData = jest.fn().mockReturnValue(data);
+    api.loadData = vi.fn().mockResolvedValue(data);
     render(
       <DataProvider>
         <Events />
       </DataProvider>
     );
-    await screen.findByText("avril");
+    await screen.findByText("Conférence #productCON");
   });
   describe("and an error occured", () => {
     it("an error message is displayed", async () => {
-      api.loadData = jest.fn().mockRejectedValue();
+      api.loadData = vi.fn().mockRejectedValue(new Error("Failed to fetch"));
       render(
         <DataProvider>
           <Events />
@@ -59,8 +61,8 @@ describe("When Events is created", () => {
     });
   });
   describe("and we select a category", () => {
-    it.only("an filtered list is displayed", async () => {
-      api.loadData = jest.fn().mockReturnValue(data);
+    it("an filtered list is displayed", async () => {
+      api.loadData = vi.fn().mockReturnValue(data);
       render(
         <DataProvider>
           <Events />
@@ -89,7 +91,7 @@ describe("When Events is created", () => {
 
   describe("and we click on an event", () => {
     it("the event detail is displayed", async () => {
-      api.loadData = jest.fn().mockReturnValue(data);
+      api.loadData = vi.fn().mockReturnValue(data);
       render(
         <DataProvider>
           <Events />
